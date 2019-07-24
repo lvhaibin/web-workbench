@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const tsImportPluginFactory = require('ts-import-plugin')
 
 module.exports = {
     mode: 'development',
@@ -13,15 +14,40 @@ module.exports = {
         publicPath: '/'
     },
     module: {
-        rules: [
-          { test: /\.tsx?$/, loader: "ts-loader" }
-        ]
+        rules: [{
+            test: /\.tsx?$/,
+            loader: "ts-loader",
+            options: {
+                getCustomTransformers: () => ({
+                    before: [
+                        tsImportPluginFactory({
+                            libraryName: 'antd',
+                            libraryDirectory: 'es',
+                            style: 'css',
+                        }),
+                    ],
+                }),
+                compilerOptions: {
+                    module: 'es2015',
+                },
+            },
+        }, {
+            test: /\.(less|css)$/,
+            use: [
+                { loader: 'style-loader' },
+                { loader: 'css-loader', 
+                    options: {
+                        modules: false,
+                    } 
+                },
+                { loader: 'less-loader', options: { javascriptEnabled: true } }]
+        }]
     },
     plugins: [new HtmlWebpackPlugin({
         title: 'My App',
         template: './src/index.html'
     })],
     resolve: {
-        extensions: ['.ts', '.tsx', '.json'],
+        extensions: ['.js', '.less', '.css', '.jsx', '.ts', '.tsx', '.json'],
     }
 }
