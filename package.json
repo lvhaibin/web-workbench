@@ -29,12 +29,17 @@
     "webpack-dev-server": "^3.7.2"
   },
   "dependencies": {
+    "@types/react-router-dom": "^4.3.4",
     "antd": "^3.20.5",
     "css-loader": "^3.1.0",
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
+    "mobx": "^5.13.0",
+    "mobx-react": "^6.1.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-hot-loader": "^4.12.10",
+    "react-router-dom": "^5.0.1",
     "style-loader": "^0.23.1"
   }
 }

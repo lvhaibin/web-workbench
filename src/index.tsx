@@ -1,6 +1,13 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import Message from './components/message';
+import { setConfig } from 'react-hot-loader';
+
+import App from './app';
 import 'antd/dist/antd.less';
 
-ReactDOM.render(<Message />, document.getElementById('app'))
+setConfig({
+    reloadHooks: false
+})
+
+
+ReactDOM.render(<App />, document.getElementById('app'))

@@ -2,16 +2,16 @@
     "version": "2.4.2",
     "compilerOptions": {
         "incremental": true,
-        "target": "es2018",
+        "target": "esnext",
         "strict": true,
         "moduleResolution": "node",
         "experimentalDecorators": true,
-        "module": "commonjs",
+        "module": "esnext",
         "sourceMap": true,
-        "declaration": true,
         "strictPropertyInitialization": false,
-        "outDir": "dist/biz",
-        "jsx": "react"
+        "allowJs": true,
+        "jsx": "react",
+        "allowSyntheticDefaultImports": true
     },
     "include": [
         "./src/**/*",

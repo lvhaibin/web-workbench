@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const tsImportPluginFactory = require('ts-import-plugin')
 
@@ -6,6 +7,7 @@ module.exports = {
     mode: 'development',
     entry: [
         'webpack-dev-server/client?http://localhost:9090',
+        "webpack/hot/only-dev-server",
         './src/index'
     ],
     output: {
@@ -43,10 +45,14 @@ module.exports = {
                 { loader: 'less-loader', options: { javascriptEnabled: true } }]
         }]
     },
-    plugins: [new HtmlWebpackPlugin({
+    plugins: [
+        new HtmlWebpackPlugin({
         title: 'My App',
-        template: './src/index.html'
-    })],
+        template: './src/index.html'}),
+
+        new webpack.NamedModulesPlugin(),
+        new webpack.HotModuleReplacementPlugin()
+    ],
     resolve: {
         extensions: ['.js', '.less', '.css', '.jsx', '.ts', '.tsx', '.json'],
     }
